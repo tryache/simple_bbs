@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block control %}
+    <li><a href="#" target="_blank">{{ user_id }}</a></li>
+    <li><a href="/logout" target="_blank">Logout</a></li>
+{% endblock control %}
+
+{% block title %}
+    {{ title }}
+{% endblock title %}
+
+{% block content %}
+    {% for post in posts %}
+        <li><a href="/posts/{{ post.id }}">{{ post.title }}</a></li>
+    {% endfor %}
+{% endblock content %}
