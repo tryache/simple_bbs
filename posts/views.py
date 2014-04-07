@@ -12,7 +12,7 @@ class IndexView(View):
     @method_decorator(login_required(login_url='/login/'))
     def get(self, request):
         posts = Post.objects.all()
-        return render(request, "posts/posts.html", {'posts': posts, 'title': 'posts'})
+        return render(request, "posts/posts.html", {'posts': posts, 'title': 'posts', 'user_id': self.request.user})
 
 
 class DetailView(View):

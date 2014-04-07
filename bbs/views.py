@@ -37,9 +37,13 @@ class RegisterView(View):
     def post(self, request):
         logger.info(request.POST)
         try:
+            user_id = request.POST['user_id']
+            password = request.POST['password']
             logger.error("register failed")
-            user = User.objects.create_user(request.POST['user_id'], request.POST['email'], request.POST['password'])
+            user = User.objects.create_user(user_id, request.POST['email'], password)
             user.save()
+            user_auth = authenticate(username=user_id, password=password)
+            login(request, user_auth)
             return redirect("/posts")
         except Exception:
             return redirect("/")
